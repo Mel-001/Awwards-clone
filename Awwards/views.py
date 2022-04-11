@@ -18,14 +18,14 @@ from .serializer import ProfileSerializer,ProjectSerializer
 # Create your views here.
 def home(request):
     projects=Project.objects.all()
-    return render(request,'Awwards/home.html',{'projects':projects})
+    return render(request,'awwards/home.html',{'projects':projects})
 
 @login_required(login_url='/accounts/login/') 
 def rate_project(request,project_id):
     project=Project.objects.get(id=project_id)
-    return render(request,"Awwards/project.html",{"project":project})
+    return render(request,"awwards/project.html",{"project":project})
 
-@login_required(login_url='/registration/login/') 
+@login_required(login_url='/accounts/login/') 
 def view_profile(request):
     projects=request.user.profile.project_set.all() 
     profile=request.user.profile
@@ -40,22 +40,22 @@ def view_profile(request):
         'form':form,
         'projects':projects,
     }
-    return render(request,"Awwards/profile.html",context=context)
+    return render(request,"awwards/profile.html",context=context)
 
 
-def register(request):
-    if request.method == 'POST':
-        username=request.POST['username']
-        email=request.POST['email']
-        password1=request.POST['password1']
-        password2=request.POST['password2']
-        user = User.objects.create_user(username=username,email=email,password=password1)
-        user.save()
-        profile=Profile.objects.create(user=user,email=user.email)
+# def register(request):
+#     if request.method == 'POST':
+#         username=request.POST['username']
+#         email=request.POST['email']
+#         password1=request.POST['password1']
+#         password2=request.POST['password2']
+#         user = User.objects.create_user(username=username,email=email,password=password1)
+#         user.save()
+#         profile=Profile.objects.create(user=user,email=user.email)
         
-        return redirect('login')
-    else:
-        return render(request,'registration/registration_form.html')
+#         return redirect('login')
+#     else:
+#         return render(request,'registration/registration_form.html')
 
 
 
@@ -66,14 +66,14 @@ def search_project(request):
         searched_projects=Project.search_by_name(search_term)
         message = f"{search_term}"
 
-        return render(request,'Awwards/search.html',{"message":message, "projects":searched_projects, "project":search_term})
+        return render(request,'awwards/search.html',{"message":message, "projects":searched_projects, "project":search_term})
     
     else:
         message = "Please enter search name"
 
-        return render(request, 'Awwards/search.html',{"message":message})
+        return render(request, 'awwards/search.html',{"message":message})
 
-@login_required(login_url='/registration/login/')     
+@login_required(login_url='/accounts/login/')     
 def new_project(request):
     current_user = request.user
     if request.method == 'POST':
@@ -86,11 +86,11 @@ def new_project(request):
         
     else:
         form = NewProjectForm()
-    return render(request, 'Awwards/new_project.html', {"form":form, "current_user":current_user})
+    return render(request, 'awwards/new_project.html', {"form":form, "current_user":current_user})
     
-@login_required(login_url='/registration/login/')   
+@login_required(login_url='/accounts/login/')   
 def api_page(request):
-    return render(request,'Awwards/api_page.html')
+    return render(request,'awwards/api_page.html')
 
 
 class ProfileList(APIView):

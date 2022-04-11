@@ -13,7 +13,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Profile(models.Model):
     profile_pic= models.ImageField(upload_to='profilepic/',default='default.jpeg')
-    user = models.OneToOneField(User,on_delete=models.CASCADE, null=True)
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
     name = models.CharField(max_length=50,blank=True)
     bio= models.CharField(max_length=500)
     email=models.EmailField()
@@ -26,7 +26,7 @@ class Profile(models.Model):
 
 class Project(models.Model):
     webimage= models.ImageField(upload_to='webimage/',null=True)
-    profile = models.ForeignKey(Profile,on_delete=models.CASCADE, null=True)
+    profile = models.ForeignKey(User,on_delete=models.CASCADE)
     name= models.CharField(max_length=70)
     description= models.TextField()
     link= models.CharField(max_length=200)
