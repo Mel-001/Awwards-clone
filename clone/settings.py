@@ -15,6 +15,10 @@ from pathlib import Path
 import django_heroku
 import dj_database_url
 from decouple import config,Csv
+import cloudinary_storage
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,6 +48,7 @@ INSTALLED_APPS = [
     'Awwards',
     'bootstrap4',
     'rest_framework',
+    'cloudinary'
     # 'djangorestframework'
     
     
@@ -155,6 +160,19 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+CLOUDINARY_STORAGE={
+  "CLOUD_NAME" : "dz9xjnzhe", 
+  "API_KEY" : "819771449194226", 
+  "API_SECRET " : "PQk1QAOFCfC8X-6c07Z-Z70MADc" 
+}
+
+cloudinary.config( 
+  cloud_name = "dz9xjnzhe", 
+  api_key = "819771449194226", 
+  api_secret = "PQk1QAOFCfC8X-6c07Z-Z70MADc" 
+)
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # Configure Django App for Heroku.
 django_heroku.settings(locals())
 
@@ -162,5 +180,6 @@ django_heroku.settings(locals())
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 

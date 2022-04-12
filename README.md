@@ -75,7 +75,7 @@ python manage.py server
 
 ## Live link
 
-https://Awwards007.herokuapp.com/
+https://awwards007.herokuapp.com/
 
 
 ## License

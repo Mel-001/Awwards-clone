@@ -26,7 +26,7 @@
         
         <div class="text-center container" style="padding:30px">
             <h4 style="font-weight: bold;"> Allow our panel of users to review your site today!</h4><br>
-            <a class="btn btn-lg btn-success" style="border-radius: 25px;" href="{% url 'new_project' %}">Submit Your Site!</a><br> 
+            <a class="btn btn-lg btn-success" style="border-radius: 25px;" href="{% url 'newproject' %}">Submit Your Site!</a><br> 
         </div><hr>
         <div class="container">
             <h5 class="text-uppercase font-weight-bold"><strong> Nominees</strong> We need your vote!</h5>
@@ -41,7 +41,7 @@
                     <div class="card-text text-center" style="padding: 20px;">
                         <h4 style="font-weight: bold;">{{project.name}}</h4>
                         <small class="text-muted" style="font-family: Arial, Helvetica, sans-serif;">{{project.description | slice:":100" }}...</small><br><br>
-                        <a class="btn btn-info" style="border-radius: 25px;" href="/awwards/project/{{project.id}}" >Project details & Rating</a><br><br>
+                        <a class="btn btn-info" style="border-radius: 25px;" href="project/{{project.id}}" >Project details & Rating</a><br><br>
                     </div>
                 </div>
             </div>

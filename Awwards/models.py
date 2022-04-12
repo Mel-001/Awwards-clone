@@ -9,10 +9,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
+from tinymce.models import HTMLField
+from cloudinary.models import CloudinaryField
+from django.db import models
+from django.contrib.auth.models import User
+
 # Create your models here.
 
 class Profile(models.Model):
-    profile_pic= models.ImageField(upload_to='profilepic/',default='default.jpeg')
+    profile_pic= CloudinaryField('image')
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     name = models.CharField(max_length=50,blank=True)
     bio= models.CharField(max_length=500)
@@ -25,7 +30,7 @@ class Profile(models.Model):
         return self.name
 
 class Project(models.Model):
-    webimage= models.ImageField(upload_to='webimage/',null=True)
+    webimage = CloudinaryField('image')
     profile = models.ForeignKey(User,on_delete=models.CASCADE)
     name= models.CharField(max_length=70)
     description= models.TextField()
