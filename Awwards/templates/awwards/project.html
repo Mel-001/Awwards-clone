@@ -6,45 +6,7 @@
         <div class="col-lg-4">
             <div class="card ">
                 <img src="{{project.webimage.url}}"  class="card-img-top img-fluid" alt="{{project.name}}" >
-                <div class="card-text text-center" style="padding: 20px;">
-                    
-                    <div>
-                        <h4>Star Rating</h4>
-                        <small>Design:</small>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span><br>
-                        <small>Content:</small>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span><br>
-                        <small>Usability:</small>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span><br><br>
-                    </div>
-                </div>
+                
             </div>
         </div>
         <div class="col-lg-8" style="padding:40px;">
@@ -57,12 +19,12 @@
                 <h5><strong> Developer: {{project.profile}}</strong></h5><br><br>
                 <a class="btn btn-info text-center" style="border-radius: 25px;" href="http://{{project.link}}" target="_blank">Visit Website</a><br><br>
             </div>
-            <div >
+            <!-- <div >
                 <h3 style="font-weight: bold;">Average Rating score:</h3>
                 <p class="text-dark">Design: </p>
                 <p class="text-dark">Content: </p>
                 <p class="text-dark">Usability: </p>
-            </div>
+            </div> -->
             <form action="" method="POST"> 
                 {%csrf_token%}
                 {{form}}
