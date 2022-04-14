@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import Profile,Project
-from .forms import NewProjectForm,ProfileUpdateForm
+from .forms import NewProjectForm,ProfileUpdateForm, RatingForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
@@ -23,7 +23,19 @@ def home(request):
 @login_required(login_url='/accounts/login/') 
 def project(request,id):
     project=Project.objects.get(id=id)
-    return render(request,"awwards/project.html",{"project":project})
+    ratings=project.rating_set.all()
+    form=RatingForm
+    
+    if request.method== 'POST':
+        form = RatingForm(request.POST)
+        if form.is_valid():
+            rating=form.save(commit=False)
+            rating.project_id = project.id
+            rating.user_id = request.user.id
+            rating.save()
+            return redirect("project", id=id )
+            
+    return render(request,"awwards/project.html",{"project":project, "form":form, "ratings":ratings})
 
 @login_required(login_url='/accounts/login/') 
 def view_profile(request):
